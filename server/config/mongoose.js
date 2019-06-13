@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs')
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/DATA_NAME_HERE'); //Just change database name here
+mongoose.connect('mongodb://localhost/task'); //Just change database name here
 let models_path = path.join(__dirname, './../models');
 
 //iterates through the models folder and searches for all the model js files

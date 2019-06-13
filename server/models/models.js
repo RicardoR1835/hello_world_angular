@@ -1,9 +1,23 @@
 var mongoose = require('mongoose');
 
 //Below is example create a schema
-var QuoteSchema = new mongoose.Schema({
-    name: { type: String, required: 'Your name must be longer than 2 characters', trim: true, minlength: 2},
-    quote: { type: String, required: 'Quote must be longer than 10 characters', trim: true, minlength: 10 },
-},{ timestamps: true })
+var TaskSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        default: "Fight Billybob",
+    },
+    description: {
+        type: String,
+        default: "",
+    },
+    completed: {
+        type: Boolean,
+        default: false,
+    },
+}, {
+    timestamps: true
+});
+mongoose.model('Task', TaskSchema);
+var Task = mongoose.model('Task');
+mongoose.Promise = global.Promise;
 
-mongoose.model('DATANAME', QuoteSchema); // 'DATANAME' , matching DATANAME you set in controllers.js

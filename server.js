@@ -21,91 +21,9 @@ app.use(session({
   }))
   mongoose.connect('mongodb://localhost/task');
 
-  var TaskSchema = new mongoose.Schema({
-      title: {
-          type: String
-      },
-      description: {
-          type: String,
-          default: "",
-      },
-      completed: {
-          type: Boolean,
-          default: false,
-      },
-  }, {
-      timestamps: true
-  });
-  mongoose.model('Task', TaskSchema);
-  var Task = mongoose.model('Task');
-  mongoose.Promise = global.Promise;
+
   
-  app.get('/tasks', function(req, res){
-  Task.find({}, function(err, tasks){
-          if(err){
-             console.log("Returned error", err);
-              // respond with JSON
-             res.json({message: "Error", error: err})
-          }
-          else {
-              // respond with JSON
-             res.json({message: "Success", data: tasks})
-          }
-       })
-  })
-  app.get('/tasks/:id', function(req,res){
-      Task.findOne({name: req.params.id}, function(err, task){
-          if(err){
-                  console.log("something went wrong", err);
-              } else {
-                  console.log("successfully deleted")
-              }
-              res.json({message: "Success", data: task})
-      })
-  })
-  app.post('/tasks/new', function(req,res){
-      var task = new Task();
-      task.title = req.params.title;
-      task.description = req.params.description;
-      completed = req.body.completed;
-      task.save(function(err){
-          if(err){
-              console.log("something went wrong", err);
-          } else {
-              console.log("successfully updated")
-              res.redirect('/')
-          }
-      })
-  })
-  app.put('/tasks/edit/:id', function(req,res){
-      Task.findOne({_id: req.params.id}, function(err,task){
-          task.title = req.params.title;
-          task.description = req.params.description;
-          completed = req.params.completed;
-          task.save(function(err){
-              if(err){
-                  console.log("something went wrong", err);
-              } else {
-                  console.log("successfully updated")
-                  res.redirect('/')
-              }
-          })
-      })
-  })
-  app.delete('/tasks/destroy/:id', function(req,res){
-      User.findOne({name: req.params.id}, function(err, user){
-          user.remove(function(err){
-              if(err){
-                  console.log("something went wrong", err);
-              } else {
-                  console.log("successfully deleted")
-              }
-              res.redirect('/')
-          })
-      })
-  })
-
-
+  
 app.listen(8000, function(){
     console.log('listening at port 8000');
 })

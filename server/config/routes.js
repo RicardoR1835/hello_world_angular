@@ -1,13 +1,22 @@
-var quotes = require('../controllers/controllers');
+var task = require('../controllers/controllers');
+
 
 module.exports = function(app){
-    app.get('/', function (req, res) {
-        // This is where we will retrieve the users from the database and include them in the view page we will be rendering.
-        quotes.index(req, res) ;
+    app.get('/tasks', function(req, res){
+        task.index(req,res);
+        })
+    app.get('/tasks/:id', function(req,res){
+        task.show(req,res);
     })
-
-    // Below is example of post method
-    app.post('/btquote', function (req, res) {
-        quotes.btquote(req, res);
+    app.post('/tasks/new', function(req,res){
+        task.new(req,res);
     })
+    app.put('/tasks/edit/:id', function(req,res){
+        task.edit(req,res)
+    })
+    app.delete('/tasks/destroy/:id', function(req,res){
+        task.delete(req,res);
+    })
+      
+      
 }
