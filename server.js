@@ -9,7 +9,7 @@ const flash = require('express-flash');
 
 app.use(flash());
 
-app.use(express.static( __dirname + '/ANGULAR_APP_NAME/dist/public' ));
+app.use(express.static( __dirname + '/public/dist/public' ));
 
 //some computer npm install bcryptjs, change required below to ('bcryptjs')
 var session = require('express-session');
@@ -40,7 +40,7 @@ app.use(session({
   var Task = mongoose.model('Task');
   mongoose.Promise = global.Promise;
   
-  app.get('/', function(req, res){
+  app.get('/tasks', function(req, res){
   Task.find({}, function(err, tasks){
           if(err){
              console.log("Returned error", err);
@@ -53,17 +53,17 @@ app.use(session({
           }
        })
   })
-  app.get('/:id', function(req,res){
+  app.get('/tasks/:id', function(req,res){
       Task.findOne({name: req.params.id}, function(err, task){
           if(err){
                   console.log("something went wrong", err);
               } else {
                   console.log("successfully deleted")
               }
-              res.json({message: "Success", data: user})
+              res.json({message: "Success", data: task})
       })
   })
-  app.post('/new', function(req,res){
+  app.post('/tasks/new', function(req,res){
       var task = new Task();
       task.title = req.params.title;
       task.description = req.params.description;
@@ -77,7 +77,7 @@ app.use(session({
           }
       })
   })
-  app.put('/edit/:id', function(req,res){
+  app.put('/tasks/edit/:id', function(req,res){
       Task.findOne({_id: req.params.id}, function(err,task){
           task.title = req.params.title;
           task.description = req.params.description;
@@ -92,7 +92,7 @@ app.use(session({
           })
       })
   })
-  app.delete('/destroy/:id', function(req,res){
+  app.delete('/tasks/destroy/:id', function(req,res){
       User.findOne({name: req.params.id}, function(err, user){
           user.remove(function(err){
               if(err){
