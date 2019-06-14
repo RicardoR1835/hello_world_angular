@@ -6,11 +6,6 @@ import { HttpClient } from '@angular/common/http'
 })
 export class HttpService {
   constructor(private _http: HttpClient) { 
-    // this.getTasks();
-    // this.getTask();
-    // this.createTask();
-    // this.editTask();
-    // this.deleteTask();
   }
   getTasks(){
     return this._http.get('/tasks');
@@ -18,17 +13,13 @@ export class HttpService {
   getTask(id: any){
     return this._http.get(`/tasks/${id}`);
   }
-  createTask(){
-    let tempObservable = this._http.get('/tasks/new');
-    tempObservable.subscribe(data => console.log('Creating new task', data));
+  createTask(task){
+    return this._http.post('/tasks/new',task);
   }
-  editTask(){
-    let tempObservable = this._http.get('/tasks/edit/:id');
-    tempObservable.subscribe(data => console.log('Editing task', data))
+  editTask(id: any, task){
+    return this._http.put(`/tasks/edit/${id}`, task)
   }
-  deleteTask(){
-    let tempObservable = this._http.get('/tasks/destroy/:id');
-    tempObservable.subscribe(data => console.log('Deleting this task', data))
+  deleteTask(id: any){
+    return this._http.delete(`/tasks/destroy/${id}`)
   }
 }
-

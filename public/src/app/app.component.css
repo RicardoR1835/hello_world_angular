@@ -11,7 +11,7 @@ body {
 
 p {
     display: inline-block;;
-    width: 75%;
+    width: 55%;
 }
 
 button {
@@ -29,6 +29,8 @@ button {
 }
 
 .tasks {
+    display: inline-block;
+    width: 55%;
     border: 5px solid turquoise;
     border-radius: 10px;
     padding-left: 10px;
@@ -38,4 +40,21 @@ button {
 
 .sp {
     border-radius: 30px;
+}
+
+.form {
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+    padding-left: 15px;
+}
+form {
+    display: inline-block;
+}
+.spp {
+    display: block;
+}
+
+div.form {
+    display: inline-block;
 }

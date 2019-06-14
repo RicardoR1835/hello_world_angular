@@ -19,7 +19,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 60000 }
   }))
-  mongoose.connect('mongodb://localhost/task');
+mongoose.connect('mongodb://localhost/task');
 
 
   

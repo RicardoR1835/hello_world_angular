@@ -1,20 +1,37 @@
-<!--The content below is only a placeholder and can be replaced.-->
+
 <div style="text-align:center">
   <div class="root"></div>
   <h1>
     Welcome to {{ title }}!
   </h1>
 </div>
-<h2>Here are the tasks: </h2>
-<button (click)="getTasksFromService()">Show tasks</button>
-<span *ngIf="clicked">
-  <div class="tasks">
+<form (submit)="onSubmit()">
+  <input type="text" name="taskToCreate.title" [(ngModel)]="taskToCreate.title" />
+  <input type="text" name="taskToCreate.description" [(ngModel)]="taskToCreate.description" />
+  <button type="submit">Create task</button>
+</form>
+<h2 class="text-center">Here are the tasks: </h2>
+<button class="spp center" (click)="getTasksFromService()">Show tasks</button>
+
+  <div *ngIf="clicked" class="tasks">
     <div *ngFor="let x of tasks">
       <p>{{ x.title }}</p>
+      <button (click)="editTaskShow(x._id)" class="sp">Edit</button>
+      <button (click)="delete(x._id)" class="sp">Delete</button>
       <button (click)="getTaskFromService(x._id)" class="sp">Show</button>
     </div>
   </div>
-</span>
+  <div *ngIf="editing" class="form">
+    <form (submit)="on_Submit()">
+      <h2>Edit</h2>
+      <p>Title:</p>
+      <input type="text" name="title" [(ngModel)]="edit.title" [value]="edit.title" />
+      <p>Description:</p>
+      <input type="text" name="edit.description" [(ngModel)]="edit.description" [value]="edit.description" />
+      <button type="submit">Create task</button>
+    </form>
+  </div>
+
 <span *ngIf="stats">
   <div class="show">
     <p>{{ task.title }} - completed: {{ task.completed }}. Created at: {{ task.createdAt }}</p>
