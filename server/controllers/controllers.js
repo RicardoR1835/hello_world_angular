@@ -24,12 +24,12 @@ module.exports = {
     },
     show: function (req, res) {
         Task.findOne({
-            name: req.params.id
+            _id: req.params.id
         }, function (err, task) {
             if (err) {
                 console.log("something went wrong", err);
             } else {
-                console.log("successfully deleted")
+                console.log("successfully found")
             }
             res.json({
                 message: "Success",
