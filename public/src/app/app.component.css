@@ -12,13 +12,14 @@ body {
 p {
     display: inline-block;;
     width: 55%;
+    margin: 0px;
 }
 
 button {
     border-radius: 10px;
     background-color: black;
     color: aliceblue;
-    padding: 10px;
+    padding: 7px;
 }
 
 .show {
@@ -30,7 +31,7 @@ button {
 
 .tasks {
     display: inline-block;
-    width: 55%;
+    width: 70%;
     border: 5px solid turquoise;
     border-radius: 10px;
     padding-left: 10px;

@@ -1,17 +1,23 @@
 
-<div style="text-align:center">
+<div class="container-fluid mx-auto">
   <div class="root"></div>
-  <h1>
+  <h1 class="text-center">
     Welcome to {{ title }}!
   </h1>
 </div>
-<form (submit)="onSubmit()">
+<h6 class="text-center">
+<form (submit)="onSubmit()" class="mx-auto">
+  <p>Title:</p>
   <input type="text" name="taskToCreate.title" [(ngModel)]="taskToCreate.title" />
+  <br>
+  <p>Description:</p>
   <input type="text" name="taskToCreate.description" [(ngModel)]="taskToCreate.description" />
+  <br>
   <button type="submit">Create task</button>
 </form>
+</h6>
 <h2 class="text-center">Here are the tasks: </h2>
-<button class="spp center" (click)="getTasksFromService()">Show tasks</button>
+<h6 class="text-center"><button (click)="getTasksFromService()">Show tasks</button></h6>
 
   <div *ngIf="clicked" class="tasks">
     <div *ngFor="let x of tasks">
@@ -31,11 +37,5 @@
       <button type="submit">Create task</button>
     </form>
   </div>
-
-<span *ngIf="stats">
-  <div class="show">
-    <p>{{ task.title }} - completed: {{ task.completed }}. Created at: {{ task.createdAt }}</p>
-
-  </div>
-</span>
+<app-task *ngIf="stats" [task]="task"></app-task>
 <div class="root"></div>
